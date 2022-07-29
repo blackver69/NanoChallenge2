@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct NanoChallenge2App: App {
-    let persistenceController = PersistenceController.shared
-
+    let container = PersistenceController.shared.container.viewContext
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        WindowGroup{
+            StartPage(vm: StartPageViewModel(vc: container)).environment(\.managedObjectContext, container)
+//            TabBarView()
+
         }
     }
 }

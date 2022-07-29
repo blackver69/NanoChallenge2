@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="File" representedClassName="File" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Resource" inverseName="file" inverseEntity="Resource"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="member" optional="YES" attributeType="String" defaultValueString="Ricky"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="resource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="project" inverseEntity="Resource"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="project" inverseEntity="User"/>
+    </entity>
+    <entity name="Resource" representedClassName="Resource" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="projectCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="topicCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="file" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="resource" inverseEntity="File"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="resource" inverseEntity="Project"/>
+        <relationship name="topic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Topic" inverseName="resource" inverseEntity="Topic"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="resource" inverseEntity="User"/>
+    </entity>
+    <entity name="Topic" representedClassName="Topic" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="resource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="topic" inverseEntity="Resource"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="topic" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="password" optional="YES" attributeType="String" defaultValueString="1234"/>
+        <attribute name="username" optional="YES" attributeType="String" defaultValueString="1234"/>
+        <relationship name="project" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="user" inverseEntity="Project"/>
+        <relationship name="resource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="user" inverseEntity="Resource"/>
+        <relationship name="topic" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Topic" inverseName="user" inverseEntity="Topic"/>
+    </entity>
+    <elements>
+        <element name="Project" positionX="-36" positionY="18" width="128" height="104"/>
+        <element name="Resource" positionX="-54" positionY="0" width="128" height="209"/>
+        <element name="Topic" positionX="-63" positionY="-9" width="128" height="104"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="File" positionX="-54" positionY="63" width="128" height="74"/>
+    </elements>
+</model>
